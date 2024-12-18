@@ -1,0 +1,32 @@
+const readline = require('node:readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+X
+});
+const main = async () =>{
+    
+const numberToGuess = Math.round( Math.random()*10)
+console.log(`number to guess :${numberToGuess}`)
+
+let userEntry = await new Promise(resolve => {
+    rl.question(" Quel est le nombre ", resolve)
+  })
+  let nombreDessaie = 0
+while (userEntry != numberToGuess){
+  console.log('rééssayer')
+  console.log(`number to guess :${numberToGuess}`)
+  nombreDessaie++;
+  userEntry = await new Promise(resolve => {
+    rl.question("What is the number ", resolve)
+  })
+}
+if (userEntry == numberToGuess)
+  console.log ('juste')
+console.log ('nombreDessaie =',nombreDessaie)
+rl.close()
+
+
+
+}
+main().then()

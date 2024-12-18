@@ -1,0 +1,11 @@
+const readline = require('node:readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+const main = async () =>{
+
+let signeChoisi = Math.round( Math.random()*3)
+let userEntry = await new Promise(resolve => {
+    rl.question("Quel est ton signe ", resolve)
+  })
