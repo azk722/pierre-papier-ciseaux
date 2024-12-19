@@ -5,154 +5,91 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-const main = async () =>{
+function resultatPartie(signeChoisi, userEntry) {
 
-  let signeChoisi = Math.round( Math.random()*3)
+  let result
 
-
-  let pierre = 1
-  let ciseaux = 2
-  let feuille = 0
-
-  if (signeChoisi == pierre) {
-    ('je choisi pierre')
-  }
-  else if (signeChoisi == ciseaux) {
-    ('je choisi ciseaux')
-  }
-  else {
-     ('je choisi feuille')
+  if(signeChoisi == userEntry) {
+    result = 0
   }
 
-
-  let userEntry = await new Promise(resolve => {
-    rl.question("Quel est ton signe : ", resolve)
-  })
-  userEntry = userEntry
-  
-  if (signeChoisi == pierre) {
-    if (userEntry == "ciseaux") {
-      console.log ('tu as perdu')
-      rl.close()
+  if(signeChoisi == "pierre")
+    if (userEntry == "feuille"){
+      result = 1
     }
-    else if (userEntry == "pierre") {
-      console.log ('égalité')
-      rl.close()
-    }
-    else if (userEntry == "feuille") {
-      console.log ('tu as gagné')
-      rl.close()
-    }
-    else
-    while (userEntry != "pierre" && userEntry != "feuille" && userEntry != "ciseaux")
-    {
-    console.log ('réessayez avec un mot correct')
-    let userEntry = await new Promise(resolve => {
-      rl.question("Quel est ton signe : ", resolve)
-    })
-  userEntry = userEntry
-    
-    if (userEntry == "pierre" || userEntry || "feuille" || userEntry == "ciseaux")
-      
-    if (userEntry == "ciseaux") {
-      console.log ('tu as perdu')
-      rl.close()
-      break
-    }
-    else if (userEntry == "pierre") {
-      console.log ('égalité')
-      rl.close()
-      break
-    }
-    else if (userEntry == "feuille") {
-      console.log ('tu as gagné')
-      rl.close()
-      break
-    }
-    }
+    else if (userEntry == "ciseaux") {
+  result = -1
   }
 
-  else if (signeChoisi == ciseaux) {
+  if (signeChoisi == "feuille") {
     if (userEntry == "ciseaux") {
-      console.log('égalité')
-      rl.close()
+      result = 1
     }
     else if (userEntry == "pierre") {
-      console.log('tu as gagné')
-      rl.close()
-    }
-    else if (userEntry == "feuille") {
-      console.log('tu as perdu')
-      rl.close()
-    }
-    else 
-    while (userEntry != "pierre" && userEntry != "feuille" && userEntry != "ciseaux")
-      {
-      console.log ('réessayez avec un mot correct')
-      let userEntry = await new Promise(resolve => {
-        rl.question("Quel est ton signe : ", resolve)
-      })
-    userEntry = userEntry
-      
-      if (userEntry == "pierre" || userEntry || "feuille" || userEntry == "ciseaux")
-        if (userEntry == "ciseaux") {
-          console.log('égalité')
-          rl.close()
-          break
-        }
-        else if (userEntry == "pierre") {
-          console.log('tu as gagné')
-          rl.close()
-          break
-        }
-        else if (userEntry == "feuille") {
-          console.log('tu as perdu')
-          rl.close()
-          break
-        }
-      }
-    }
-  
-  else if (signeChoisi == feuille) {
-    if (userEntry == "ciseaux") {
-      console.log('tu as gagné')
-      rl.close()
-    }
-    else if (userEntry == "pierre") {
-      console.log ('tu as perdu')
-      rl.close()
-    }
-    else if (userEntry == "feuille") {
-      console.log('égalité')
-      rl.close()
-    }
-    else 
-    while (userEntry != "pierre" && userEntry != "feuille" && userEntry != "ciseaux")
-      {
-      console.log ('réessayez avec un mot correct')
-      let userEntry = await new Promise(resolve => {
-        rl.question("Quel est ton signe : ", resolve)
-      })
-    userEntry = userEntry
-      
-      if (userEntry == "pierre" || userEntry || "feuille" || userEntry == "ciseaux")
-        if (userEntry == "ciseaux") {
-          console.log('tu as gagné')
-          rl.close()
-          break
-        }
-        else if (userEntry == "pierre") {
-          console.log ('tu as perdu')
-          rl.close()
-          break
-        }
-        else if (userEntry == "feuille") {
-          console.log("égalité")
-          rl.close()
-          break
-        }
-
-    }
+    result = -1
   }
 }
+
+  if (signeChoisi == "ciseaux") {
+    if (userEntry == "feuille") {
+      result =-1
+    }
+    else if (userEntry == "pierre"){
+    result = 1
+  }
+
+
+}
+
+return result
+}
+ 
+const main = async () =>{
+  
+  const possibleValues = ["pierre","feuille","ciseaux"]
+  const randomValue = Math.round(Math.random()*2)
+  const signeChoisi = possibleValues[randomValue] 
+
+  let nombreDeReponses = 0
+  let userEntry
+
+  
+
+  do {
+    if (nombreDeReponses >0) {
+      console.log ('réessayez avec un mot correct (pierre, ciseaux ou feuille)')
+    }
+    userEntry = await new Promise(resolve => {
+      rl.question("Quel est ton signe : ", resolve)
+    })   
+    nombreDeReponses++
+  } 
+  while (userEntry != "pierre" && userEntry != "feuille" && userEntry != "ciseaux")
+
+
+    
+   const resultat = resultatPartie(signeChoisi, userEntry)
+   if (signeChoisi == "pierre") {
+    console.log('bot a choisi pierre')
+  }
+  else if (signeChoisi == "ciseaux") {
+    console.log('bot a choisi ciseaux')
+  }
+  else if (signeChoisi == "feuille") {
+    console.log('bot a choisi feuille')
+  }
+  if (resultat == 1) {
+    console.log('tu as gagné')
+  }
+  else if (resultat == 0) {
+    console.log('égalité')
+    }
+  else if (resultat == -1) {
+    console.log('tu as perdu')
+  }
+
+  
+  rl.close()   
+}
+   
 main().then()
