@@ -15,13 +15,13 @@ const main = async () =>{
   let feuille = 0
 
   if (signeChoisi == pierre) {
-    console.log('je choisi pierre')
+    ('je choisi pierre')
   }
   else if (signeChoisi == ciseaux) {
-    console.log('je choisi ciseaux')
+    ('je choisi ciseaux')
   }
   else {
-    console.log ('je choisi feuille')
+     ('je choisi feuille')
   }
 
 
@@ -33,12 +33,15 @@ const main = async () =>{
   if (signeChoisi == pierre) {
     if (userEntry == "ciseaux") {
       console.log ('tu as perdu')
+      rl.close()
     }
     else if (userEntry == "pierre") {
       console.log ('égalité')
+      rl.close()
     }
     else if (userEntry == "feuille") {
       console.log ('tu as gagné')
+      rl.close()
     }
     else
     while (userEntry != "pierre" && userEntry != "feuille" && userEntry != "ciseaux")
@@ -72,12 +75,15 @@ const main = async () =>{
   else if (signeChoisi == ciseaux) {
     if (userEntry == "ciseaux") {
       console.log('égalité')
+      rl.close()
     }
     else if (userEntry == "pierre") {
       console.log('tu as gagné')
+      rl.close()
     }
     else if (userEntry == "feuille") {
       console.log('tu as perdu')
+      rl.close()
     }
     else 
     while (userEntry != "pierre" && userEntry != "feuille" && userEntry != "ciseaux")
@@ -110,12 +116,15 @@ const main = async () =>{
   else if (signeChoisi == feuille) {
     if (userEntry == "ciseaux") {
       console.log('tu as gagné')
+      rl.close()
     }
     else if (userEntry == "pierre") {
       console.log ('tu as perdu')
+      rl.close()
     }
     else if (userEntry == "feuille") {
       console.log('égalité')
+      rl.close()
     }
     else 
     while (userEntry != "pierre" && userEntry != "feuille" && userEntry != "ciseaux")
