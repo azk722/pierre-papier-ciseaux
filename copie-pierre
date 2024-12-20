@@ -45,15 +45,17 @@ return result
 }
  
 const main = async () =>{
-  
+let userEntry  
+let nombreDeParties = 1 
+ do {
   const possibleValues = ["pierre","feuille","ciseaux"]
   const randomValue = Math.round(Math.random()*2)
   const signeChoisi = possibleValues[randomValue] 
-
+ 
   let nombreDeReponses = 0
-  let userEntry
 
-  
+  console.log('Nouvelle partie')
+  console.log('Partie n°', nombreDeParties)
 
   do {
     if (nombreDeReponses >0) {
@@ -78,6 +80,8 @@ const main = async () =>{
   else if (signeChoisi == "feuille") {
     console.log('bot a choisi feuille')
   }
+
+
   if (resultat == 1) {
     console.log('tu as gagné')
   }
@@ -87,8 +91,10 @@ const main = async () =>{
   else if (resultat == -1) {
     console.log('tu as perdu')
   }
-
+nombreDeParties++
   
+ }
+ while (userEntry != "stop") 
   rl.close()   
 }
    
