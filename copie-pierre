@@ -66,9 +66,11 @@ let nombreDeParties = 1
     })   
     nombreDeReponses++
   } 
-  while (userEntry != "pierre" && userEntry != "feuille" && userEntry != "ciseaux")
+  while (userEntry != "pierre" && userEntry != "feuille" && userEntry != "ciseaux" && userEntry != "stop")
 
-
+if (userEntry == "stop") {
+    rl.close()
+}
     
    const resultat = resultatPartie(signeChoisi, userEntry)
    if (signeChoisi == "pierre") {
@@ -95,7 +97,8 @@ nombreDeParties++
   
  }
  while (userEntry != "stop") 
-  rl.close()   
+ 
+
 }
-   
+  
 main().then()
