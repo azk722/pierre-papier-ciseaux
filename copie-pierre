@@ -47,11 +47,11 @@ return result
 const main = async () =>{
 let userEntry  
 let nombreDeParties = 1 
+let points = 0
  do {
   const possibleValues = ["pierre","feuille","ciseaux"]
   const randomValue = Math.round(Math.random()*2)
   const signeChoisi = possibleValues[randomValue] 
- 
   let nombreDeReponses = 0
 
   console.log('Nouvelle partie')
@@ -68,32 +68,46 @@ let nombreDeParties = 1
   } 
   while (userEntry != "pierre" && userEntry != "feuille" && userEntry != "ciseaux" && userEntry != "stop")
 
-if (userEntry == "stop") {
-    rl.close()
-}
     
-   const resultat = resultatPartie(signeChoisi, userEntry)
-   if (signeChoisi == "pierre") {
-    console.log('bot a choisi pierre')
-  }
-  else if (signeChoisi == "ciseaux") {
-    console.log('bot a choisi ciseaux')
-  }
-  else if (signeChoisi == "feuille") {
-    console.log('bot a choisi feuille')
-  }
+
+        if (userEntry == "stop") {
+            rl.close()
+        }
+        else {
+            
+            if (signeChoisi == "pierre") {
+                console.log('bot a choisi pierre')
+            }
+            else if (signeChoisi == "ciseaux") {
+                console.log('bot a choisi ciseaux')
+            }
+            else if (signeChoisi == "feuille") {
+                console.log('bot a choisi feuille')
+            }
+
+            const resultat = resultatPartie(signeChoisi, userEntry)
+
+            points += resultat
 
 
-  if (resultat == 1) {
-    console.log('tu as gagné')
-  }
-  else if (resultat == 0) {
-    console.log('égalité')
-    }
-  else if (resultat == -1) {
-    console.log('tu as perdu')
-  }
-nombreDeParties++
+            if (resultat == 1) {
+                console.log('tu as gagné')
+            }
+            else if (resultat == 0) {
+                console.log('égalité')
+                }
+            else if (resultat == -1) {
+                console.log('tu as perdu')
+            }
+            nombreDeParties++
+            console.log(points, 'point(s)')
+    
+        }
+        
+     
+
+
+    
   
  }
  while (userEntry != "stop") 
